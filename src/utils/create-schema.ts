@@ -2,6 +2,7 @@ import { buildSchema } from "type-graphql";
 
 import { FollowResolver } from "../resolvers/follow/mutation/follow";
 import { UnfollowResolver } from "../resolvers/follow/mutation/unfollow";
+import { FollowedResolver } from "../resolvers/user/field/followed";
 
 import { IsFollowingResolver } from "../resolvers/follow/query/is-following";
 import { FollowersResolver } from "../resolvers/follow/query/followers";
@@ -55,6 +56,7 @@ export const createSchema = () =>
 
       UserResolver,
       UsersResolver,
+      FollowedResolver,
 
       EmailExistResolver,
       UsernameExistResolver,

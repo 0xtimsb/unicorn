@@ -47,6 +47,9 @@ export class User extends BaseEntity {
   @OneToMany(() => Vote, (vote) => vote.user)
   votes: Vote[];
 
+  @Field(() => Boolean, { defaultValue: false })
+  followed: boolean;
+
   // @Field(() => [Follow])
   @OneToMany(() => Follow, (follow) => follow.follower)
   following: Follow[];
