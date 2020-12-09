@@ -22,7 +22,11 @@ export class DeleteVoteResolver {
       .select("SUM(vote.voteStatus)", "voteCount")
       .getRawOne();
 
-    Post.update({ id }, { voteCount });
+    if (!voteCount) {
+      Post.update({ id }, { voteCount: 0 });
+    } else {
+      Post.update({ id }, { voteCount });
+    }
 
     return true;
   }
