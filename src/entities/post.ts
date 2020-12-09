@@ -8,7 +8,7 @@ import {
   UpdateDateColumn,
   OneToMany,
 } from "typeorm";
-import { Field, Int, ObjectType } from "type-graphql";
+import { Field, ObjectType } from "type-graphql";
 
 import { User } from "./user";
 import { Comment } from "./comment";
@@ -25,14 +25,15 @@ export class Post extends BaseEntity {
   @Column()
   text: string;
 
-  @Field(() => Int, { nullable: true })
-  voteStatus: number; // 1 or -1 or null
+  @Field()
+  voteStatus: number; // 1 or -1 or 0
 
-  @Field(() => Int, { defaultValue: 0 })
+  @Field()
+  @Column({ default: 0 })
   voteCount: number;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.posts)
+  @ManyToOne(() => User, (user) => user.posts, { onDelete: "CASCADE" })
   user: User;
 
   @Field(() => [Vote])

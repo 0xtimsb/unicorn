@@ -1,10 +1,10 @@
-import { Resolver, Mutation, Arg, Ctx, UseMiddleware } from 'type-graphql';
+import { Resolver, Mutation, Arg, Ctx, UseMiddleware } from "type-graphql";
 import { getConnection } from "typeorm";
 
-import { Post } from '../../../entities/post';
+import { Post } from "../../../entities/post";
 
-import { isAuth } from '../../../middleware/is-auth';
-import { context } from '../../../types';
+import { isAuth } from "../../../middleware/is-auth";
+import { context } from "../../../types";
 
 @Resolver()
 export class CreatePostResolver {
@@ -19,7 +19,7 @@ export class CreatePostResolver {
       .insert()
       .into(Post)
       .values({ text, user: { id: req.session.userId } })
-      .output('*')
+      .output("*")
       .execute();
 
     return result.raw[0];

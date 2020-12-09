@@ -19,16 +19,16 @@ export class Vote extends BaseEntity {
   id: number;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.votes)
+  @ManyToOne(() => User, (user) => user.votes, { onDelete: "CASCADE" })
   user: User;
 
   @Field(() => Post)
-  @ManyToOne(() => Post, (post) => post.votes)
+  @ManyToOne(() => Post, (post) => post.votes, { onDelete: "CASCADE" })
   post: Post;
 
   @Field()
-  @Column({ default: null, nullable: true })
-  vote: number;
+  @Column()
+  voteStatus: number; // 1 or -1 or 0
 
   @Field(() => String)
   @CreateDateColumn()

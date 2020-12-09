@@ -1,9 +1,8 @@
-import { Resolver, Mutation, Arg, Ctx, UseMiddleware } from 'type-graphql';
-import { getConnection } from "typeorm";
+import { Resolver, Mutation, Arg, Ctx, UseMiddleware } from "type-graphql";
 
-import { Post } from '../../../entities/post';
-import { isAuth } from '../../../middleware/is-auth';
-import { context } from '../../../types';
+import { Post } from "../../../entities/post";
+import { isAuth } from "../../../middleware/is-auth";
+import { context } from "../../../types";
 
 @Resolver()
 export class DeletePostResolver {
@@ -14,14 +13,9 @@ export class DeletePostResolver {
     @Ctx() { req }: context
   ): Promise<boolean> {
     try {
-      await getConnection()
-        .createQueryBuilder()
-        .delete()
-        .from(Post)
-        .where("id = :id", { id })
-        .andWhere("user.id = :id", { id: req.session.userId })
-        .execute();
-    } catch {
+      await Post.delete({ id, user: { id: req.session.userId } });
+    } catch (err) {
+      console.log(err);
       return false;
     }
     return true;

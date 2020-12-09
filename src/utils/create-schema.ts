@@ -19,6 +19,7 @@ import { DeletePostsResolver } from "../resolvers/post/mutation/delete-posts";
 import { PostResolver } from "../resolvers/post/query/post";
 import { UserPostsResolver } from "../resolvers/post/query/user-posts";
 import { FollowingPostsResolver } from "../resolvers/post/query/following-posts";
+import { TrendingPostsResolver } from "../resolvers/post/query/trending-posts";
 
 import { EmailResolver } from "../resolvers/user/field/email";
 import { ChangePasswordResolver } from "../resolvers/user/mutation/change-password";
@@ -27,6 +28,7 @@ import { LoginResolver } from "../resolvers/user/mutation/login";
 import { LogoutResolver } from "../resolvers/user/mutation/logout";
 import { SendCodeResolver } from "../resolvers/user/mutation/send-code";
 import { SignupResolver } from "../resolvers/user/mutation/signup";
+import { DeleteUserResolver } from "../resolvers/user/mutation/delete-user";
 
 import { MeResolver } from "../resolvers/user/query/me";
 import { UserResolver } from "../resolvers/user/query/user";
@@ -40,7 +42,6 @@ import { DownvoteResolver } from "../resolvers/vote/mutation/downvote";
 import { DeleteVoteResolver } from "../resolvers/vote/mutation/delete-vote";
 
 import { VoteStatusResolver } from "../resolvers/post/field/vote-status";
-import { VoteCountResolver } from "../resolvers/post/field/vote-count";
 
 export const createSchema = () =>
   buildSchema({
@@ -53,6 +54,7 @@ export const createSchema = () =>
       ForgotPasswordResolver,
       ChangePasswordResolver,
       EmailResolver,
+      DeleteUserResolver,
 
       UserResolver,
       UsersResolver,
@@ -72,6 +74,7 @@ export const createSchema = () =>
       PostResolver,
       UserPostsResolver,
       FollowingPostsResolver,
+      TrendingPostsResolver,
 
       FollowResolver,
       UnfollowResolver,
@@ -85,7 +88,6 @@ export const createSchema = () =>
       DeleteVoteResolver,
 
       VoteStatusResolver,
-      VoteCountResolver,
     ],
     validate: false,
   });

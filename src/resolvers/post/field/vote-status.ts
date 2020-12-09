@@ -7,7 +7,7 @@ import { context } from "../../../types";
 
 @Resolver(Post)
 export class VoteStatusResolver {
-  @FieldResolver(() => Int, { nullable: true })
+  @FieldResolver(() => Int)
   async voteStatus(@Root() post: Post, @Ctx() { req }: context) {
     const vote = await getConnection()
       .getRepository(Vote)
@@ -16,10 +16,10 @@ export class VoteStatusResolver {
       .andWhere("vote.user.id = :userId", { userId: req.session.userId })
       .getOne();
 
-    if (vote) {
-      return vote.vote;
+    if (!vote) {
+      return 0;
     }
 
-    return null;
+    return vote.voteStatus;
   }
 }
