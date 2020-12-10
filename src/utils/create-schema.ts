@@ -11,6 +11,9 @@ import { FollowingResolver } from "../resolvers/follow/query/following";
 import { CreateCommentResolver } from "../resolvers/comment/mutation/create-comment";
 import { CommentsResolver } from "../resolvers/comment/query/comments";
 
+import { CreateReplyResolver } from "../resolvers/reply/mutation/create-reply";
+import { RepliesResolver } from "../resolvers/reply/query/replies";
+
 import { CreatePostResolver } from "../resolvers/post/mutation/create-post";
 import { DeletePostResolver } from "../resolvers/post/mutation/delete-post";
 import { UpdatePostResolver } from "../resolvers/post/mutation/update-post";
@@ -65,6 +68,9 @@ export const createSchema = () =>
 
       CreateCommentResolver,
       CommentsResolver,
+
+      CreateReplyResolver,
+      RepliesResolver,
 
       CreatePostResolver,
       DeletePostResolver,

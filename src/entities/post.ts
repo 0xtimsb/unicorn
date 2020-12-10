@@ -29,6 +29,9 @@ export class Post extends BaseEntity {
   voteStatus: number; // 1 or -1 or 0
 
   @Field()
+  commentCount: number;
+
+  @Field()
   @Column({ default: 0 })
   voteCount: number;
 

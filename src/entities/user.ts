@@ -13,6 +13,7 @@ import { Post } from "./post";
 import { Comment } from "./comment";
 import { Follow } from "./follow";
 import { Vote } from "./vote";
+import { Reply } from "./reply";
 
 @ObjectType()
 @Entity()
@@ -36,13 +37,17 @@ export class User extends BaseEntity {
   @Column()
   password: string;
 
-  // @Field(() => [Post])
   @OneToMany(() => Post, (post) => post.user)
   posts: Post[];
 
-  // @Field(() => [Comment])
   @OneToMany(() => Comment, (comment) => comment.user)
   comments: Comment[];
+
+  @OneToMany(() => Reply, (reply) => reply.user)
+  replies: Reply[];
+
+  @OneToMany(() => Reply, (reply) => reply.user)
+  tagReplies: Reply[];
 
   @OneToMany(() => Vote, (vote) => vote.user)
   votes: Vote[];
@@ -50,11 +55,9 @@ export class User extends BaseEntity {
   @Field(() => Boolean, { defaultValue: false })
   followed: boolean;
 
-  // @Field(() => [Follow])
   @OneToMany(() => Follow, (follow) => follow.follower)
   following: Follow[];
 
-  // @Field(() => [Follow])
   @OneToMany(() => Follow, (follow) => follow.user)
   followers: Follow[];
 

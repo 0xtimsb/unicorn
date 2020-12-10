@@ -6,17 +6,15 @@ import {
   ManyToOne,
   CreateDateColumn,
   UpdateDateColumn,
-  OneToMany,
 } from "typeorm";
 import { Field, ObjectType } from "type-graphql";
 
-import { Post } from "./post";
 import { User } from "./user";
-import { Reply } from "./reply";
+import { Comment } from "./comment";
 
 @ObjectType()
 @Entity()
-export class Comment extends BaseEntity {
+export class Reply extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
@@ -26,16 +24,18 @@ export class Comment extends BaseEntity {
   text: string;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.comments, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.replies, { onDelete: "CASCADE" })
   user: User;
 
-  @Field(() => Post)
-  @ManyToOne(() => Post, (post) => post.comments, { onDelete: "CASCADE" })
-  post: Post;
+  @Field(() => Comment)
+  @ManyToOne(() => Comment, (comment) => comment.replies, {
+    onDelete: "CASCADE",
+  })
+  comment: Comment;
 
-  @Field(() => [Reply])
-  @OneToMany(() => Reply, (reply) => reply.comment)
-  replies: Reply[];
+  @Field(() => User)
+  @ManyToOne(() => User, (user) => user.tagReplies, { onDelete: "CASCADE" })
+  tagUser: User;
 
   @Field(() => String)
   @CreateDateColumn()
