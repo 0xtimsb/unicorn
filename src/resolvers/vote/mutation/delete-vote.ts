@@ -24,21 +24,21 @@ export class DeleteVoteResolver {
           post: { id },
           user: { id: req.session.userId },
         });
-        countVotePost(id);
+        await countVotePost(id);
         break;
       case "COMMENT":
         await VoteComment.delete({
           comment: { id },
           user: { id: req.session.userId },
         });
-        countVoteComment(id);
+        await countVoteComment(id);
         break;
       case "REPLY":
         await VoteReply.delete({
           reply: { id },
           user: { id: req.session.userId },
         });
-        countVoteReply(id);
+        await countVoteReply(id);
         break;
       default:
         return false;

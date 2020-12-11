@@ -1,10 +1,11 @@
 import {
   Entity,
-  PrimaryGeneratedColumn,
   BaseEntity,
   CreateDateColumn,
   ManyToOne,
   Column,
+  PrimaryGeneratedColumn,
+  Index,
 } from "typeorm";
 import { Field, ObjectType } from "type-graphql";
 
@@ -13,6 +14,9 @@ import { Post } from "./post";
 
 @ObjectType()
 @Entity()
+@Index((vote: VotePost) => [vote.user, vote.post], {
+  unique: true,
+})
 export class VotePost extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()

@@ -5,6 +5,7 @@ import {
   CreateDateColumn,
   ManyToOne,
   Column,
+  Index,
 } from "typeorm";
 import { Field, ObjectType } from "type-graphql";
 
@@ -13,6 +14,9 @@ import { Comment } from "./comment";
 
 @ObjectType()
 @Entity()
+@Index((vote: VoteComment) => [vote.user, vote.comment], {
+  unique: true,
+})
 export class VoteComment extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()

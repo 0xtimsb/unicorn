@@ -26,7 +26,7 @@ export class DownvoteResolver {
           user: { id: req.session.userId },
           voteStatus: -1,
         }).save();
-        countVotePost(id);
+        await countVotePost(id);
         break;
       case "COMMENT":
         await VoteComment.create({
@@ -34,7 +34,7 @@ export class DownvoteResolver {
           user: { id: req.session.userId },
           voteStatus: -1,
         }).save();
-        countVoteComment(id);
+        await countVoteComment(id);
         break;
       case "REPLY":
         await VoteReply.create({
@@ -42,7 +42,7 @@ export class DownvoteResolver {
           user: { id: req.session.userId },
           voteStatus: -1,
         }).save();
-        countVoteReply(id);
+        await countVoteReply(id);
         break;
       default:
         return false;

@@ -4,6 +4,7 @@ import {
   BaseEntity,
   CreateDateColumn,
   ManyToOne,
+  Index,
 } from "typeorm";
 import { Field, ObjectType } from "type-graphql";
 
@@ -11,6 +12,9 @@ import { User } from "../entities/user";
 
 @ObjectType()
 @Entity()
+@Index((follow: Follow) => [follow.user, follow.follower], {
+  unique: true,
+})
 export class Follow extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
