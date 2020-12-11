@@ -15,7 +15,7 @@ export class DeleteVoteResolver {
   @Mutation(() => Boolean)
   async deleteVote(
     @Arg("id", () => Int) id: number,
-    @Arg("type", () => String) type: "POST" | "COMMENT" | "REPLY",
+    @Arg("type", () => String) type: string,
     @Ctx() { req }: context
   ): Promise<Boolean> {
     switch (type.toUpperCase()) {
