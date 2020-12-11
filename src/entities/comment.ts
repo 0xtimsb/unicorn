@@ -13,7 +13,6 @@ import { Field, ObjectType } from "type-graphql";
 import { Post } from "./post";
 import { User } from "./user";
 import { Reply } from "./reply";
-import { Vote } from "./vote";
 import { VoteComment } from "./vote-comment";
 
 @ObjectType()
