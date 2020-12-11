@@ -19,7 +19,7 @@ export class VoteReply extends BaseEntity {
   id: number;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.votes, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.replyVotes, { onDelete: "CASCADE" })
   user: User;
 
   @Field(() => Reply)

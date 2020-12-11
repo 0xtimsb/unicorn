@@ -9,11 +9,15 @@ import {
 } from "typeorm";
 import { Field, ObjectType } from "type-graphql";
 
+import { Follow } from "./follow";
+
 import { Post } from "./post";
 import { Comment } from "./comment";
-import { Follow } from "./follow";
-import { Vote } from "./vote";
 import { Reply } from "./reply";
+
+import { VotePost } from "./vote-post";
+import { VoteComment } from "./vote-comment";
+import { VoteReply } from "./vote-reply";
 
 @ObjectType()
 @Entity()
@@ -49,8 +53,14 @@ export class User extends BaseEntity {
   @OneToMany(() => Reply, (reply) => reply.user)
   tagReplies: Reply[];
 
-  @OneToMany(() => Vote, (vote) => vote.user)
-  votes: Vote[];
+  @OneToMany(() => VotePost, (vote) => vote.user)
+  postVotes: VotePost[];
+
+  @OneToMany(() => VoteComment, (vote) => vote.user)
+  commentVotes: VoteComment[];
+
+  @OneToMany(() => VoteReply, (vote) => vote.user)
+  replyVotes: VoteReply[];
 
   @Field(() => Boolean, { defaultValue: false })
   followed: boolean;

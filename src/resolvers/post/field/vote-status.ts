@@ -1,7 +1,7 @@
 import { Resolver, FieldResolver, Root, Ctx, Int } from "type-graphql";
 import { getConnection } from "typeorm";
 
-import { Vote } from "../../../entities/vote";
+import { VotePost } from "../../../entities/vote-post";
 import { Post } from "../../../entities/post";
 import { context } from "../../../types";
 
@@ -10,7 +10,7 @@ export class VoteStatusResolver {
   @FieldResolver(() => Int)
   async voteStatus(@Root() post: Post, @Ctx() { req }: context) {
     const vote = await getConnection()
-      .getRepository(Vote)
+      .getRepository(VotePost)
       .createQueryBuilder("vote")
       .where("vote.post.id = :id", { id: post.id })
       .andWhere("vote.user.id = :userId", { userId: req.session.userId })

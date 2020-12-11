@@ -1,12 +1,12 @@
 import { getConnection } from "typeorm";
 
-import { Vote } from "../../entities/vote";
+import { VotePost } from "../../entities/vote-post";
 import { Post } from "../../entities/post";
 
-const countVote = async (id: number) => {
+const countVotePost = async (id: number) => {
   // Updating vote count field.
   const { voteCount } = await getConnection()
-    .getRepository(Vote)
+    .getRepository(VotePost)
     .createQueryBuilder("vote")
     .where("vote.post.id = :id", { id })
     .select("SUM(vote.voteStatus)", "voteCount")
@@ -19,4 +19,4 @@ const countVote = async (id: number) => {
   }
 };
 
-export default countVote;
+export default countVotePost;

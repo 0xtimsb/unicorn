@@ -12,7 +12,7 @@ import { Field, ObjectType } from "type-graphql";
 
 import { User } from "./user";
 import { Comment } from "./comment";
-import { Vote } from "./vote";
+import { VotePost } from "./vote-post";
 
 @ObjectType()
 @Entity()
@@ -39,9 +39,9 @@ export class Post extends BaseEntity {
   @ManyToOne(() => User, (user) => user.posts, { onDelete: "CASCADE" })
   user: User;
 
-  @Field(() => [Vote])
-  @OneToMany(() => Vote, (vote) => vote.post)
-  votes: Vote[];
+  @Field(() => [VotePost])
+  @OneToMany(() => VotePost, (vote) => vote.post)
+  votes: VotePost[];
 
   @Field(() => [Comment])
   @OneToMany(() => Comment, (comment) => comment.post)

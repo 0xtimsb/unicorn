@@ -13,13 +13,13 @@ import { Post } from "./post";
 
 @ObjectType()
 @Entity()
-export class Vote extends BaseEntity {
+export class VotePost extends BaseEntity {
   @Field()
   @PrimaryGeneratedColumn()
   id: number;
 
   @Field(() => User)
-  @ManyToOne(() => User, (user) => user.votes, { onDelete: "CASCADE" })
+  @ManyToOne(() => User, (user) => user.postVotes, { onDelete: "CASCADE" })
   user: User;
 
   @Field(() => Post)
