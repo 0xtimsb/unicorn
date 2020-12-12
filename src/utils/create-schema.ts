@@ -39,9 +39,17 @@ import { UsersResolver } from "../resolvers/user/query/users";
 import { EmailExistResolver } from "../resolvers/user/query/email-exist";
 import { UsernameExistResolver } from "../resolvers/user/query/username-exist";
 
-import { UpvoteResolver } from "../resolvers/vote/mutation/upvote";
-import { DownvoteResolver } from "../resolvers/vote/mutation/downvote";
-import { DeleteVoteResolver } from "../resolvers/vote/mutation/delete-vote";
+import { UpvotePostResolver } from "../resolvers/vote-post/mutation/upvote-post";
+import { DownvotePostResolver } from "../resolvers/vote-post/mutation/downvote-post";
+import { DeleteVotePostResolver } from "../resolvers/vote-post/mutation/delete-vote-post";
+
+import { UpvoteCommentResolver } from "../resolvers/vote-comment/mutation/upvote-comment";
+import { DownvoteCommentResolver } from "../resolvers/vote-comment/mutation/downvote-comment";
+import { DeleteVoteCommentResolver } from "../resolvers/vote-comment/mutation/delete-vote-comment";
+
+import { UpvoteReplyResolver } from "../resolvers/vote-reply/mutation/upvote-reply";
+import { DownvoteReplyResolver } from "../resolvers/vote-reply/mutation/downvote-reply";
+import { DeleteVoteReplyResolver } from "../resolvers/vote-reply/mutation/delete-vote-reply";
 
 import { VoteStatusResolver as VotePostStatusResolver } from "../resolvers/post/field/vote-status";
 import { VoteStatusResolver as VoteCommentStatusResolver } from "../resolvers/comment/field/vote-status";
@@ -89,9 +97,17 @@ export const createSchema = () =>
       FollowersResolver,
       FollowingResolver,
 
-      UpvoteResolver,
-      DownvoteResolver,
-      DeleteVoteResolver,
+      UpvotePostResolver,
+      DownvotePostResolver,
+      DeleteVotePostResolver,
+
+      UpvoteCommentResolver,
+      DownvoteCommentResolver,
+      DeleteVoteCommentResolver,
+
+      UpvoteReplyResolver,
+      DownvoteReplyResolver,
+      DeleteVoteReplyResolver,
 
       VotePostStatusResolver,
       VoteCommentStatusResolver,

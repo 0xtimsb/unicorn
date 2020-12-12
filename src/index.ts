@@ -1,29 +1,29 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 import "dotenv-safe/config";
 
-import { createConnection } from 'typeorm';
+import { createConnection } from "typeorm";
 
-import path from 'path';
+import path from "path";
 // import cors from 'cors';
 
-import express from 'express';
-import { ApolloServer } from 'apollo-server-express';
+import express from "express";
+import { ApolloServer } from "apollo-server-express";
 
-import Redis from 'ioredis';
-import session from 'express-session';
-import connectRedis from 'connect-redis';
+import Redis from "ioredis";
+import session from "express-session";
+import connectRedis from "connect-redis";
 
 import { __prod__, COOKIE_NAME } from "./constants";
-import { createSchema } from './utils/create-schema';
+import { createSchema } from "./utils/create-schema";
 
 const main = async () => {
   const connection = await createConnection({
     type: "postgres",
-    logging: false,
+    logging: true,
     // synchronize: true, // Because, we did migrations!
     url: process.env.DATABASE_URL,
-    migrations: [path.join(__dirname, './migrations/*')],
-    entities: [path.join(__dirname, './entities/*')],
+    migrations: [path.join(__dirname, "./migrations/*")],
+    entities: [path.join(__dirname, "./entities/*")],
   });
 
   await connection.runMigrations();
@@ -61,18 +61,21 @@ const main = async () => {
 
   const apolloServer = new ApolloServer({
     schema: await createSchema(),
-    context: ({ req, res }) => ({ req, res, redis })
+    context: ({ req, res }) => ({ req, res, redis }),
   });
 
   apolloServer.applyMiddleware({
-    app, cors: {
+    app,
+    cors: {
       origin: process.env.CORS_ORIGIN,
       credentials: true,
-    }
+    },
   });
 
   app.listen(parseInt(process.env.PORT), () =>
-    console.log(`🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`)
+    console.log(
+      `🚀 Server ready at http://localhost:4000${apolloServer.graphqlPath}`
+    )
   );
 };
 
