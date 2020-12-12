@@ -16,17 +16,20 @@ export class UpvoteCommentResolver {
   ): Promise<Boolean> {
     try {
       // If vote does not exist, create or if exist updates it to 1.
-      const vote = new VoteComment();
-      vote.user.id = req.session.userId;
-      vote.comment.id = id;
-      vote.voteStatus = 1;
+      const voteStatus = 1;
       await getConnection()
         .createQueryBuilder()
         .insert()
         .into(VoteComment)
-        .values(vote)
-        .onConflict(`("id") DO UPDATE SET "voteStatus" = :voteStatus`)
-        .setParameter("voteStatus", vote.voteStatus)
+        .values({
+          comment: { id },
+          user: { id: req.session.userId },
+          voteStatus,
+        })
+        .onConflict(
+          `("userId", "commentId") DO UPDATE SET "voteStatus" = :voteStatus`
+        )
+        .setParameter("voteStatus", voteStatus)
         .execute();
       await countVoteComment(id);
     } catch {

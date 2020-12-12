@@ -16,17 +16,20 @@ export class DownvoteReplyResolver {
   ): Promise<Boolean> {
     try {
       // If vote does not exist, create or if exist updates it to -1.
-      const vote = new VoteReply();
-      vote.user.id = req.session.userId;
-      vote.reply.id = id;
-      vote.voteStatus = -1;
+      const voteStatus = -1;
       await getConnection()
         .createQueryBuilder()
         .insert()
         .into(VoteReply)
-        .values(vote)
-        .onConflict(`("id") DO UPDATE SET "voteStatus" = :voteStatus`)
-        .setParameter("voteStatus", vote.voteStatus)
+        .values({
+          reply: { id },
+          user: { id: req.session.userId },
+          voteStatus,
+        })
+        .onConflict(
+          `("userId", "replyId") DO UPDATE SET "voteStatus" = :voteStatus`
+        )
+        .setParameter("voteStatus", voteStatus)
         .execute();
       await countVoteReply(id);
     } catch {
