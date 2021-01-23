@@ -17,16 +17,13 @@ import { __prod__, COOKIE_NAME } from "./constants";
 import { createSchema } from "./utils/create-schema";
 
 const main = async () => {
-  const connection = await createConnection({
+  await createConnection({
     type: "postgres",
     logging: true,
-    // synchronize: true, // Because, we did migrations!
     url: process.env.DATABASE_URL,
     migrations: [path.join(__dirname, "./migrations/*")],
     entities: [path.join(__dirname, "./entities/*")],
   });
-
-  await connection.runMigrations();
 
   const app = express();
 

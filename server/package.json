@@ -1,6 +1,7 @@
 {
   "name": "server",
-  "main": "index.js",
+  "version": "1.0.0",
+  "private": true,
   "devDependencies": {
     "@types/connect-redis": "^0.0.14",
     "@types/cors": "^2.8.7",
@@ -39,9 +40,9 @@
     "watch": "tsc -w",
     "dev": "nodemon dist/index.js",
     "start": "node dist/index.js",
-    "migration:create": "ts-node ./node_modules/typeorm/cli.js migration:create -n initial",
-    "migration:generate": "ts-node ./node_modules/typeorm/cli.js migration:generate -n initial",
-    "migration:run": "ts-node ./node_modules/typeorm/cli.js migration:run",
-    "migration:revert": "ts-node ./node_modules/typeorm/cli.js migration:revert"
+    "migration:create": "ts-node ../node_modules/typeorm/cli.js migration:create -n initial",
+    "migration:generate": "ts-node ../node_modules/typeorm/cli.js migration:generate -n initial",
+    "migration:run": "ts-node ../node_modules/typeorm/cli.js migration:run",
+    "migration:revert": "ts-node ../node_modules/typeorm/cli.js migration:revert"
   }
 }
