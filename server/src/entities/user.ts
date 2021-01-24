@@ -10,6 +10,7 @@ import {
 import { Field, ObjectType } from "type-graphql";
 
 import { Follow } from "./follow";
+import { Member } from "./member";
 
 import { Post } from "./post";
 import { Comment } from "./comment";
@@ -67,6 +68,9 @@ export class User extends BaseEntity {
 
   @OneToMany(() => Follow, (follow) => follow.follower)
   following: Follow[];
+
+  @OneToMany(() => Member, (member) => member.user)
+  communities: Member[];
 
   @OneToMany(() => Follow, (follow) => follow.user)
   followers: Follow[];
