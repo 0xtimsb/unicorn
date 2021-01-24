@@ -66,11 +66,14 @@ const Home = () => {
       <Head>
         <title>Home</title>
       </Head>
-      <div className="flex flex-col space-y-5 max-w-xl mx-auto">
+      <div className="flex-1 flex flex-col space-y-4 max-w-lg">
         {result.map((post) => (
           <Post key={post.id} post={post} />
         ))}
         {isFetching && hasMore && <p>Loading...</p>}
+      </div>
+      <div className="flex flex-col w-72">
+        <div className="border bg-white rounded">New tab</div>
       </div>
     </Layout>
   );

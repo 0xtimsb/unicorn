@@ -27,7 +27,7 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const voteHelper = { voteStatus, voteCount, handleUpvote, handleDownvote };
 
   return (
-    <div className="bg-white rounded p-4 space-y-3">
+    <div className="bg-white border rounded p-4 space-y-3">
       <User createdAt={createdAt} user={user} />
       <div>{text}</div>
       <ActionBar id={id} voteHelper={voteHelper} />

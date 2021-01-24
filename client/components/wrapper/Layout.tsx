@@ -4,9 +4,9 @@ interface LayoutProps {}
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <div className="h-screen bg-gray-900">
+    <div className="h-screen bg-gray-100">
       <Navbar />
-      {children}
+      <div className="flex justify-center pt-4 space-x-4">{children}</div>
     </div>
   );
 };

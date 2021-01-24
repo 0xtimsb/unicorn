@@ -22,40 +22,13 @@ const Navbar: React.FC = (props) => {
   const router = useRouter();
 
   return (
-    <nav className="sticky top-0 z-40 lg:z-50 w-full max-w-8xl mx-auto bg-white flex-none flex border-b">
-      <div className="px-4 py-4 sm:px-2 gap-x-2 gap-y-3 flex items-center flex-wrap">
-        <Link href={HOME}>
-          <a>
-            <div className="bg-gray-100 rounded-full h-12 w-12 flex items-center justify-center p-3">
-              <img src="../../images/logo.svg" alt="" />
-            </div>
-          </a>
-        </Link>
-        <div className="flex items-center gap-2 order-last w-full md:order-none md:w-auto">
-          <Link href={HOME}>
-            <a>
-              <Button active={router.pathname === HOME}>For You</Button>
-            </a>
-          </Link>
-          <Link href={FOLLOWING}>
-            <a>
-              <Button active={router.pathname === FOLLOWING}>Following</Button>
-            </a>
-          </Link>
-        </div>
-        <Search />
-        <div>
-          <NavButton>
-            <RiAddLine />
-          </NavButton>
-        </div>
-        <Link href={"/" + auth.username}>
-          <a>
-            <NavButton>
-              <img src="../../images/logo.svg" alt="" className="h-7 w-7" />
-            </NavButton>
-          </a>
-        </Link>
+    <nav className="sticky top-0 bg-white flex justify-center border-b py-4 space-x-4">
+      <div className="flex-1 bg-gray-50 border rounded px-3 py-2 max-w-lg">
+        <span className="text-gray-400">Search</span>
+      </div>
+      <div className="flex w-72 justify-end space-x-2">
+        <button className="px-4">Login</button>
+        <button className="border rounded hover:bg-gray-50 px-4">Signup</button>
       </div>
     </nav>
   );
