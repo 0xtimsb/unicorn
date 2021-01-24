@@ -25,8 +25,7 @@ import { HOME_POSTS_LIMIT } from "../constants/dataLimits";
 import { useAuth } from "../store/AuthContext";
 
 // Components
-import Sidebar from "../components/Sidebar";
-import ContentWrapper from "../components/ContentWrapper";
+import Link from "next/link";
 
 const Home = () => {
   const { auth } = useAuth();
@@ -73,7 +72,30 @@ const Home = () => {
         {isFetching && hasMore && <p>Loading...</p>}
       </div>
       <div className="flex flex-col w-72">
-        <div className="border bg-white rounded">New tab</div>
+        <div className="flex flex-col border bg-white rounded p-4 space-y-4">
+          <div className="font-bold">Top Communities</div>
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center space-x-2">
+              <img
+                src="http://placekitten.com/g/300/300"
+                alt="pic"
+                width="28"
+                height="28"
+                className="rounded"
+              />
+              <div className="flex items-baseline space-x-1.5">
+                <Link href="">
+                  <a className="text-sm font-semibold hover:underline">
+                    r/communityname
+                  </a>
+                </Link>
+                <span className="text-sm font-bold text-blue-400 hover:underline cursor-pointer">
+                  Follow
+                </span>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </Layout>
   );
