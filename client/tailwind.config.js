@@ -10,7 +10,7 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Lato", ...defaultTheme.fontFamily.sans],
+        sans: ["Nunito Sans", ...defaultTheme.fontFamily.sans],
       },
       colors: {
         gray: colors.blueGray,

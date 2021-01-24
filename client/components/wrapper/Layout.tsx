@@ -4,10 +4,10 @@ interface LayoutProps {}
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   return (
-    <>
+    <div className="h-screen bg-gray-900">
       <Navbar />
-      <div className="w-full max-w-8xl mx-auto">{children}</div>
-    </>
+      {children}
+    </div>
   );
 };
 

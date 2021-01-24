@@ -66,14 +66,11 @@ const Home = () => {
       <Head>
         <title>Home</title>
       </Head>
-      <div className="lg:flex">
-        <Sidebar />
-        <ContentWrapper>
-          {result.map((post) => (
-            <Post key={post.id} post={post} />
-          ))}
-          {isFetching && hasMore && <p>Loading...</p>}
-        </ContentWrapper>
+      <div className="flex flex-col space-y-5 max-w-xl mx-auto">
+        {result.map((post) => (
+          <Post key={post.id} post={post} />
+        ))}
+        {isFetching && hasMore && <p>Loading...</p>}
       </div>
     </Layout>
   );

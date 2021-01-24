@@ -27,18 +27,11 @@ const Post: React.FC<PostProps> = ({ post }) => {
   const voteHelper = { voteStatus, voteCount, handleUpvote, handleDownvote };
 
   return (
-    <Panel className="px-3 py-2 space-y-2">
-      <div className="flex space-x-3">
-        <div>
-          <Profile />
-        </div>
-        <div className="flex-1 -mt-1.5">
-          <User createdAt={createdAt} user={user} />
-          <div className="text-sm">{text}</div>
-          <ActionBar id={id} voteHelper={voteHelper} />
-        </div>
-      </div>
-    </Panel>
+    <div className="bg-white rounded p-4 space-y-3">
+      <User createdAt={createdAt} user={user} />
+      <div>{text}</div>
+      <ActionBar id={id} voteHelper={voteHelper} />
+    </div>
   );
 };
 

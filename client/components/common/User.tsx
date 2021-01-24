@@ -1,11 +1,10 @@
 import Link from "next/link";
-import { RiArrowDownSLine } from "react-icons/ri";
 
 // GraphQL types
 import { Post_post_user } from "../../graphql/__generated__/Post";
 
 // Utils
-import { currentDate, timeAgo } from "../../utils/date";
+import { timeAgo } from "../../utils/date";
 
 interface UserTypes {
   user: Post_post_user;
@@ -14,15 +13,24 @@ interface UserTypes {
 
 const User: React.FC<UserTypes> = ({ user, createdAt }) => {
   return (
-    <div className="space-x-1.5">
-      <Link href={"/" + user.username}>
-        <span className="text-sm font-black text-gray-800 dark:text-gray-200 hover:underline">
-          {user.username}
-        </span>
-      </Link>
-      <span className="text-xs text-gray-500 cursor-pointer hover:underline">
-        {currentDate(createdAt)}
-      </span>
+    <div className="flex items-center space-x-3">
+      <img
+        src="http://placekitten.com/g/300/300"
+        alt="pic"
+        width="34"
+        height="34"
+        className="rounded"
+      />
+      <div className="flex items-center space-x-1">
+        <Link href={"/" + user.username}>
+          <span className="font-bold cursor-pointer hover:underline">
+            {user.username}
+          </span>
+        </Link>
+        <span className="text-sm text-gray-500">{`· ${timeAgo(
+          createdAt
+        )}`}</span>
+      </div>
     </div>
   );
 };
